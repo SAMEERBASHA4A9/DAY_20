@@ -1,0 +1,22 @@
+The assign keyword in Verilog is used for continuous assignments to wire variables, and it allows you to model combinational logic. It's important to use it correctly, especially when you're dealing with complex designs.
+
+Here are a few key points and rules for using assign:
+
+Continuous Assignment: The assign keyword is used to make a continuous assignment to a wire type variable. It continuously drives the value based on the expression on the right-hand side.
+
+verilog
+assign wire_name = expression;
+
+Only for wire Types: The assign keyword can only be used with wire type variables. It cannot be used with reg variables. If you use assign with reg, you’ll get a synthesis error.
+
+Combinational Logic: Typically, assign is used for modeling combinational logic. For sequential logic, always blocks are more appropriate.
+
+Non-blocking Assignments: The assign statement is inherently non-blocking, meaning it doesn’t hold up the execution of other statements. However, it can cause a race condition if not handled carefully, especially when mixed with procedural blocks.
+
+Assignment to Multiple Wires: When you assign a value to multiple wires, they all get the same value at the same time.
+
+Complications/Considerations:
+
+If you try to assign a value to a reg inside an assign statement, it won't work, and you should use always for reg assignments.
+When using assign, make sure you don't accidentally cause latch inference by leaving some branches of a conditional statement unassigned.
+Overwriting a wire with multiple continuous assignments (i.e., using assign for the same wire in different places) will lead to errors or unexpected behavior.
